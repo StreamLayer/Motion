@@ -146,14 +146,16 @@ extension MotionTransition {
     
     tContext?.completeTransition(isFinishing)
     
+    #if os(iOS)
     let isModalDismissal = isModalTransition && !isPresenting
     if isModalDismissal {
       Application.shared.fixRootViewY()
     }
+    #endif
   }
 }
 
-
+#if os(iOS)
 private extension UIApplication {
   /**
    When in-call, hotspot, or recording status bar is enabled, just after (custom) modal
@@ -175,3 +177,4 @@ private extension UIApplication {
     }
   }
 }
+#endif

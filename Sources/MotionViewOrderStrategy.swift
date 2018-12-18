@@ -26,6 +26,8 @@
  * THE SOFTWARE.
  */
 
+import Foundation
+
 @objc(MotionViewOrderStrategy)
 public enum MotionViewOrderStrategy: Int {
   case auto
