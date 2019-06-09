@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D8691ED721C8908700A1A8F4"
-               BuildableName = "Motion_tvOS.framework"
+               BuildableName = "Motion.framework"
                BlueprintName = "Motion tvOS"
                ReferencedContainer = "container:Motion.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8691ED721C8908700A1A8F4"
-            BuildableName = "Motion_tvOS.framework"
+            BuildableName = "Motion.framework"
             BlueprintName = "Motion tvOS"
             ReferencedContainer = "container:Motion.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D8691ED721C8908700A1A8F4"
-            BuildableName = "Motion_tvOS.framework"
+            BuildableName = "Motion.framework"
             BlueprintName = "Motion tvOS"
             ReferencedContainer = "container:Motion.xcodeproj">
          </BuildableReference>
