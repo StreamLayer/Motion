@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-import Foundation
+import ObjectiveC
 
 public struct AssociatedObject {
   /**
