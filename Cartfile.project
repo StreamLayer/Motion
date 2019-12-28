@@ -1,0 +1,11 @@
+Motion:
+  project: Motion.xcodeproj
+  sdks:
+  - iphoneos
+  - iphonesimulator
+
+Motion tvOS:
+  project: Motion.xcodeproj
+  sdks:
+  - appletvos
+  - appletvsimulator

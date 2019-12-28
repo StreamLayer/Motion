@@ -1,0 +1,21 @@
+{
+  "branch": "master",
+  "plugins": [
+    ["@semantic-release/commit-analyzer", {
+      "preset": "angular"
+    }],
+    ["@semantic-release/git", {
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+      "assets": ["report.json"]
+    }],
+    ["@semantic-release/exec", {
+      "publishCmd": "carthage build --archive"
+    }],
+    ["@semantic-release/github", {
+      "assets": [
+        { "path": "Motion.framework.zip" },
+        { "path": "report.json" }
+      ]
+    }]
+  ]
+}

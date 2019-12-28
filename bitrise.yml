@@ -9,34 +9,23 @@ workflows:
     - script:
         deps:
           brew:
-          - name: hub
-            bin_name: hub
+          - name: node
+          - name: streamlayer/formulas/carthage
+          - name: streamlayer/formulas/prefixify
         inputs:
         - content: |-
             #!/bin/bash
+
             set -ex
-            
-            ### Cleanup, build, archive
-            rm -rf ./Carthage/ ./DerivedData
-            carthage build --no-skip-current
-            zip -r $ARTIFACT ./Carthage/Build
 
-            ### Generate release number
-            # Release number consist of the latest release version of the upstream repo
-            # suffixed with 'slr' suffix and amount of commits to be unique
-            COMMITS_NUMBER=$(git rev-list --count HEAD)
-            # 'hub' uses upstream remote by default, for some reason:
-            # https://hub.github.com/hub.1.html
-            git remote add upstream $UPSTREAM || true
+            yarn add semantic-release @semantic-release/exec @semantic-release/git
 
-            RELEASE=$(hub release -L 1 | xargs -I % sh -c "echo %'-slr.'$COMMITS_NUMBER")
-
-            ### Create release and upload
-            # Remove upstream to make 'hub' upload to 'origin' repo rather than default 'upstream'
-            git remote remove upstream
-            hub release create -a $ARTIFACT -m $RELEASE $RELEASE
+            TMPDIR=$(mktemp -d)
+            cp -R $DIR $TMPDIR
+            swift-prefixify rewrite $TMPDIR/$DIR $PWD/$DIR --report ./report.json --prefix SLR$
+            yarn semantic-release
+            git checkout -- $DIR
 
 app:
   envs:
-  - ARTIFACT: "Motion.framework.zip"
-  - UPSTREAM: "git@github.com:CosmicMind/Motion.git"
+  - DIR: "Sources"

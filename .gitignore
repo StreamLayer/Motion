@@ -19,4 +19,5 @@ profile
 DerivedData
 Index
 Build
-
+node_modules
+*.lock
