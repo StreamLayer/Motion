@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@streamlayer/animo",
+  "name": "@streamlayer/motion",
   "dependencies": {
     "@semantic-release/exec": "^3.3.8",
     "@semantic-release/git": "^7.0.18",
