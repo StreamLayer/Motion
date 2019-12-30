@@ -23,14 +23,13 @@ workflows:
             TMPDIR=$(mktemp -d)
             cp -R $DIR $TMPDIR
 
-            trap "git checkout -- $DIR" INT TERM HUP EXIT
             swift-prefixify rewrite $TMPDIR/$DIR $PWD/$DIR \
               --report $REPORT \
               --prefix $PREFIX \
               --product-name "$PRODUCT_NAME"
 
             xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
-            trap 'rm -f "$xcconfig"' INT TERM HUP EXIT
+            trap 'rm -f "$xcconfig"; git checkout -- "$DIR"' INT TERM HUP EXIT
 
             echo "DEBUG_INFORMATION_FORMAT = dwarf" >> $xcconfig
             echo "CLANG_ENABLE_MODULE_DEBUGGING = NO" >> $xcconfig
