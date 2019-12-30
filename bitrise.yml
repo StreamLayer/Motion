@@ -22,10 +22,27 @@ workflows:
 
             TMPDIR=$(mktemp -d)
             cp -R $DIR $TMPDIR
-            swift-prefixify rewrite $TMPDIR/$DIR $PWD/$DIR --report ./report.json --prefix SLR$
+
+            swift-prefixify rewrite $TMPDIR/$DIR $PWD/$DIR \
+              --report $REPORT \
+              --prefix $PREFIX \
+              --product-name "$PRODUCT_NAME"
+
+            xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
+            trap 'rm -f "$xcconfig"' INT TERM HUP EXIT
+
+            echo "DEBUG_INFORMATION_FORMAT = dwarf" >> $xcconfig
+            echo "CLANG_ENABLE_MODULE_DEBUGGING = NO" >> $xcconfig
+            echo "PRODUCT_NAME = ${PREFIX}${PRODUCT_NAME}" >> $xcconfig
+            echo "PRODUCT_MODULE_NAME = ${PREFIX}${PRODUCT_NAME}" >> $xcconfig
+            export XCODE_XCCONFIG_FILE="$xcconfig"
+
             yarn semantic-release
             git checkout -- $DIR
 
 app:
   envs:
   - DIR: "Sources"
+  - PRODUCT_NAME: "Motion"
+  - PREFIX: "SLR_"
+  - REPORT: "./report.json"
