@@ -23,7 +23,7 @@ workflows:
             TMPDIR=$(mktemp -d)
             cp -R $DIR $TMPDIR
 
-            trap 'git checkout -- "$DIR"' INT TERM HUP EXIT
+            trap "git checkout -- $DIR" INT TERM HUP EXIT
             swift-prefixify rewrite $TMPDIR/$DIR $PWD/$DIR \
               --report $REPORT \
               --prefix $PREFIX \

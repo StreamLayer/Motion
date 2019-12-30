@@ -13,7 +13,7 @@
     }],
     ["@semantic-release/github", {
       "assets": [
-        { "path": "Motion.framework.zip" },
+        { "path": "SLR_Motion.framework.zip" },
         { "path": "report.json" }
       ]
     }]

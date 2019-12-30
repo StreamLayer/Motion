@@ -21,3 +21,4 @@ Index
 Build
 node_modules
 *.lock
+*.zip
