@@ -30,7 +30,7 @@ workflows:
               --exclude abs
 
             xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
-            trap 'rm -f "$xcconfig"; git checkout -- "$DIR"' INT TERM HUP EXIT
+            trap 'rm -f "$xcconfig"; git checkout -- "$DIR"; git clean -f' INT TERM HUP EXIT
 
             swift package generate-xcodeproj
 
