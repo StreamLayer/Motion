@@ -22,3 +22,5 @@ Build
 node_modules
 *.lock
 *.zip
+.build
+*.xcodeproj

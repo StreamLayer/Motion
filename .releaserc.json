@@ -4,12 +4,12 @@
     ["@semantic-release/commit-analyzer", {
       "preset": "angular"
     }],
+    ["@semantic-release/exec", {
+      "prepareCmd": "echo SWIFT_VERSION=5.1.3 >> $XCODE_XCCONFIG_FILE; carthage build --toolchain org.swift.50120190418a --commitish v${nextRelease.version} --cache-builds --archive --archive-output SLR_Motion.framework.zip"
+    }],
     ["@semantic-release/git", {
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
       "assets": ["report.json"]
-    }],
-    ["@semantic-release/exec", {
-      "publishCmd": "carthage build --archive"
     }],
     ["@semantic-release/github", {
       "assets": [
