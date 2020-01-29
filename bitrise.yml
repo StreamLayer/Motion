@@ -26,7 +26,8 @@ workflows:
             swift-prefixify rewrite $TMPDIR/$DIR $PWD/$DIR \
               --report $REPORT \
               --prefix $PREFIX \
-              --product-name "$PRODUCT_NAME"
+              --product-name "$PRODUCT_NAME" \
+              --exclude abs
 
             xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
             trap 'rm -f "$xcconfig"; git checkout -- "$DIR"' INT TERM HUP EXIT
